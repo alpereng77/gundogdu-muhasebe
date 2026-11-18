@@ -1,0 +1,17 @@
+{
+  "name": "gundogdu-insaat-html",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Gündoğdu",
+  "description": "Gündoğdu İnşaat Muhasebe — çok sayfalı HTML ve Tailwind CSS",
+  "scripts": {
+    "build:pages": "node build-pages.cjs",
+    "build:css": "node build-css.mjs",
+    "build": "npm run build:pages && npm run build:css"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.2.1",
+    "tailwindcss": "4.2.1",
+    "postcss": "8.5.6"
+  }
+}

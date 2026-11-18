@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+class Role extends Model
+{
+    use \App\Models\Concerns\Auditable;
+
+    protected function auditLabel(): string
+    {
+        return $this->name;
+    }
+
+    protected $fillable = ['name', 'description', 'permissions'];
+
+    protected function casts(): array
+    {
+        return ['permissions' => 'array'];
+    }
+
+    public function users(): HasMany
+    {
+        return $this->hasMany(User::class);
+    }
+}

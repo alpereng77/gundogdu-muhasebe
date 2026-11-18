@@ -1,0 +1,10 @@
+/* Gündoğdu — Tailwind CSS 4 kaynak dosyası */
+@import "tailwindcss";
+@source "../*.html";
+@source "../assets/app.js";
+@theme {
+  --color-petrol: #1b3c48;
+  --color-sage: #62766d;
+  --color-forest: #314029;
+  --font-sans: Inter, Arial, sans-serif;
+}
