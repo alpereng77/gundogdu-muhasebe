@@ -63,7 +63,8 @@ trait Auditable
             'user_name' => $user?->name,
             'action' => $action,
             'subject_type' => $this->auditType ?? strtolower(class_basename($this)),
-            'subject_id' => $this->getKey(),
+            // Ayarlar gibi metin anahtarlı kayıtlarda kimlik yerine etiket (ayar adı) kullanılır.
+            'subject_id' => is_numeric($this->getKey()) ? $this->getKey() : null,
             'label' => mb_substr((string) (method_exists($this, 'auditLabel') ? $this->auditLabel() : $this->getKey()), 0, 255),
             'project_id' => method_exists($this, 'auditProjectId') ? $this->auditProjectId() : ($this->project_id ?? null),
             'changes' => $changes ?: null,

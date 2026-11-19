@@ -68,7 +68,7 @@ class DataService
                 'amount' => $c->amount, 'due' => $c->due->format('Y-m-d'), 'bank' => $c->bank,
                 'status' => $c->status, 'type' => $c->type, 'dir' => $c->direction, 'bankTx' => $c->bank_transaction_id,
             ])->values(),
-            'company' => $s['company'] ?? 'Gündoğdu İnşaat A.Ş.',
+            'company' => $s['company'] ?? 'Öztoprak İnşaat',
             'tax' => $s['tax'] ?? '',
             'address' => $s['address'] ?? '',
             'logo' => $s['logo'] ?? '',

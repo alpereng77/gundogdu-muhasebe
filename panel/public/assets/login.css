@@ -1,0 +1,154 @@
+@font-face{font-family:'Purgatory';font-display:swap;src:url('fonts/purgatory.ttf') format('truetype')}
+.devsig{font-family:'Purgatory','Mrs Saint Delafield',cursive;font-weight:400;font-style:normal;letter-spacing:0;line-height:1;white-space:nowrap}
+/* Öztoprak İnşaat · Giriş sayfası
+   Mimari pafta düzeni: solda çizim ve antet, sağda koyu form paneli.
+   Renkler Tema ayarlarından gelir: --ink (menü rengi), --acc (vurgu), --paper (arka plan). */
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+.lp{
+  --ink:#1b3c48;--acc:#314029;--paper:#f4f5f1;
+  --line:color-mix(in srgb,var(--ink) 55%,transparent);
+  --faint:color-mix(in srgb,var(--ink) 16%,transparent);
+  --sans:'IBM Plex Sans',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;--serif:'Fraunces',Georgia,serif;
+  font-family:var(--sans);color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased
+}
+.lp-sheet{height:100vh;height:100dvh;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(380px,1fr)}
+
+/* ---------- Sol: pafta ---------- */
+.lp-plan{
+  position:relative;display:flex;flex-direction:column;min-height:0;padding:clamp(20px,3.6vh,34px) 48px clamp(18px,3vh,30px);overflow:hidden;
+  background-color:color-mix(in srgb,var(--paper) 70%,#fff);
+  background-image:
+    linear-gradient(var(--faint) 1px,transparent 1px),linear-gradient(90deg,var(--faint) 1px,transparent 1px),
+    linear-gradient(color-mix(in srgb,var(--ink) 7%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--ink) 7%,transparent) 1px,transparent 1px);
+  background-size:120px 120px,120px 120px,24px 24px,24px 24px;
+  border-right:1px solid var(--line)
+}
+.lp-plan::before{content:"";position:absolute;inset:14px;border:1px solid var(--line);pointer-events:none}
+.lp-plan-head{display:flex;justify-content:space-between;gap:16px;font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;opacity:.75;position:relative}
+.lp-title{position:relative;margin-top:clamp(14px,5vh,56px);flex:none}
+.lp-title h1{margin:0;font:400 clamp(44px,min(6.2vw,10.5vh),96px)/.92 var(--serif);letter-spacing:-.025em;font-variation-settings:"opsz" 144}
+.lp-title h1 em{font-style:italic;font-weight:600;color:var(--acc)}
+.lp-title p{margin:clamp(10px,2.2vh,22px) 0 0;font:400 clamp(15px,1.9vh,17px)/1.5 var(--sans);max-width:30ch;opacity:.8}
+.lp-drawwrap{position:relative;flex:1 1 auto;min-height:120px;display:flex;justify-content:flex-end;align-items:flex-end;margin-top:12px}
+.lp-drawing{display:block;width:100%;max-width:640px;height:100%;max-height:100%}
+.lp-drawing line,.lp-drawing rect,.lp-drawing circle{fill:none;stroke:var(--ink);vector-effect:non-scaling-stroke}
+.lp-drawing .l1 line,.lp-drawing .l1 rect{stroke-width:.8;opacity:.55}
+.lp-drawing .l2,.lp-drawing .l2 line,.lp-drawing .l2 rect{stroke-width:1.5}
+.lp-drawing .win rect{stroke-width:.9;fill:color-mix(in srgb,var(--ink) 6%,transparent)}
+.lp-drawing .dash,.lp-drawing .dash line,.lp-drawing .dash rect{stroke-width:1;stroke-dasharray:5 4;opacity:.75}
+.lp-drawing .dim line{stroke-width:.8;stroke:var(--acc)}
+.lp-drawing .fill{fill:var(--ink)}
+.lp-drawing .hatch{fill:url(#hatch);stroke:none}
+.lp-drawing pattern line{stroke:var(--ink);stroke-width:1;opacity:.5}
+.lp-drawing text{font:500 11px var(--mono);fill:var(--ink);letter-spacing:.06em}
+.lp-drawing .mono{fill:var(--acc)}
+.lp-drawing .axis circle{stroke-width:1}
+.lp-drawing .axis text{font-size:10px}
+.lp-stamp{position:relative;flex:none;align-self:flex-start;margin-top:clamp(10px,2vh,18px);border-collapse:collapse;font:400 11px/1.3 var(--mono);background:color-mix(in srgb,var(--paper) 60%,#fff)}
+.lp-stamp th,.lp-stamp td{border:1px solid var(--line);padding:7px 10px;text-align:left}
+.lp-stamp th{font-weight:500;text-transform:uppercase;letter-spacing:.12em;font-size:10px;opacity:.7;width:1%;white-space:nowrap}
+
+/* ---------- Sağ: form ---------- */
+.lp-form{
+  position:relative;display:flex;flex-direction:column;min-height:0;overflow-y:auto;padding:clamp(24px,5vh,56px) clamp(32px,5vw,72px) clamp(18px,3vh,28px);
+  background:var(--ink);color:#f3f1ea
+}
+.lp-mark{flex:none;width:52px;height:52px;margin:auto 0 clamp(18px,4vh,38px);display:grid;place-items:center;border:1px solid #ffffff55}
+.lp-mark span{font:600 21px/1 var(--serif);letter-spacing:.02em}
+.lp-mark img{width:100%;height:100%;object-fit:contain;background:#fff;padding:5px}
+.lp-form h2{margin:0;font:400 40px/1.05 var(--serif);letter-spacing:-.02em}
+.lp-lead{margin:clamp(8px,1.6vh,14px) 0 clamp(18px,3.6vh,34px);font-size:15px;line-height:1.6;color:#f3f1eab8;max-width:36ch}
+.lp-error{margin:0 0 26px;padding:12px 14px 12px 16px;border-left:3px solid #f0a35e;background:#00000033;font-size:14px;line-height:1.5}
+.lp form{display:flex;flex-direction:column;gap:clamp(16px,2.8vh,26px);max-width:420px}
+.lp-field{display:flex;flex-direction:column;gap:8px}
+.lp-field>span:first-child{font:500 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:#f3f1ea99}
+.lp-field input{
+  width:100%;padding:10px 0 11px;border:0;border-bottom:1px solid #ffffff4d;border-radius:0;background:transparent;
+  color:#fff;font:400 17px/1.3 var(--sans);outline:none;transition:border-color .15s
+}
+.lp-field input:focus{border-bottom-color:#fff;box-shadow:0 1px 0 #fff}
+.lp-field input:-webkit-autofill{-webkit-text-fill-color:#fff;transition:background-color 9999s}
+.lp-pass{display:flex;align-items:flex-end;gap:10px}
+.lp-show{flex:none;margin-bottom:6px;padding:5px 0;border:0;background:none;color:#f3f1eab0;font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.lp-show:hover,.lp-show:focus-visible{color:#fff;outline:none;text-decoration:underline;text-underline-offset:4px}
+.lp-remember{display:flex;align-items:center;gap:12px;font-size:14px;color:#f3f1eacc;cursor:pointer;user-select:none}
+.lp-remember input{position:absolute;opacity:0}
+.lp-remember span{width:18px;height:18px;border:1px solid #ffffff80;display:grid;place-items:center}
+.lp-remember input:checked+span{background:#fff}
+.lp-remember input:checked+span::after{content:"";width:8px;height:4px;border:solid var(--ink);border-width:0 0 2px 2px;transform:rotate(-45deg) translate(1px,-1px)}
+.lp-remember input:focus-visible+span{outline:2px solid #fff;outline-offset:2px}
+.lp-submit{
+  margin-top:6px;display:flex;align-items:center;justify-content:space-between;padding:17px 20px;border:0;border-radius:0;
+  background:#f3f1ea;color:var(--ink);font:600 16px/1 var(--sans);cursor:pointer;transition:background .15s,transform .15s
+}
+.lp-submit svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.lp-submit:hover{background:#fff}
+.lp-submit:hover svg{transform:translateX(4px)}
+.lp-submit:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.lp-submit:disabled{opacity:.7;cursor:progress}
+
+/* Geliştirici imzası */
+.lp-dev{
+  margin-top:auto;display:flex;align-items:center;gap:14px;max-width:420px;padding:14px 16px;
+  border:1px solid #ffffff38;background:#ffffff0d;color:#f3f1ea;text-decoration:none;transition:background .2s,border-color .2s
+}
+.lp-form>.lp-dev{margin-top:clamp(22px,5vh,56px)}
+.lp-dev:hover,.lp-dev:focus-visible{background:#ffffff1a;border-color:#ffffff80;outline:none}
+.lp-dev-text{display:flex;flex-direction:column;gap:3px;min-width:0}
+.lp-dev-text small{font:500 10px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:#f3f1ea99}
+.lp-dev-text b{font:600 17px/1.2 var(--serif);letter-spacing:-.01em}
+.lp-stamp .devsig{font-size:28px;line-height:.8;vertical-align:-4px}
+.lp-dev-text em{font:400 12px/1.2 var(--mono);font-style:normal;color:#f3f1eacc;letter-spacing:.04em}
+.lp-dev svg{flex:none;margin-left:auto;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.lp-dev:hover svg{transform:translate(3px,-3px)}
+.lp-copy{margin:12px 0 0;font:400 11px/1.5 var(--mono);letter-spacing:.06em;color:#f3f1ea73}
+.lp-stamp td b{font-weight:600}
+.lp-form>.lp-mark+h2{margin-top:0}
+
+/* ---------- Dar ekran ---------- */
+@media(max-width:980px){
+  .lp-sheet{grid-template-columns:1fr;grid-template-rows:auto 1fr;height:auto;min-height:100dvh;overflow:visible}
+  .lp-drawwrap{display:none}
+  .lp-plan{padding:28px 28px 24px;border-right:0;border-bottom:1px solid var(--line)}
+  .lp-title{margin-top:28px}
+  .lp-stamp{display:none}
+  .lp-form{padding:32px 28px 24px;overflow:visible}
+  .lp-mark{margin-top:0}
+}
+@media(max-width:560px){
+  .lp-plan-head span:last-child{display:none}
+  .lp-plan{padding:22px 22px 18px}
+  .lp-plan::before{inset:8px}
+  .lp-title{margin-top:14px}
+  .lp-title h1{font-size:44px}
+  .lp-title p{font-size:14px;margin-top:8px}
+  .lp-form{padding:24px 22px 20px}
+  .lp-mark{display:none}
+  .lp-form h2{font-size:30px}
+  .lp-lead{font-size:14px;margin-bottom:18px}
+  .lp form{gap:16px}
+  .lp-form>.lp-dev{margin-top:22px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* İmza: üzerine gelince site adresi normal yazıyla belirir */
+.sigswap{display:inline-grid;vertical-align:middle;cursor:pointer}
+.sigswap>*{grid-area:1/1;transition:opacity .38s ease,transform .38s cubic-bezier(.2,.7,.2,1),filter .38s ease}
+.sigswap .devurl{align-self:center;justify-self:start;opacity:0;transform:translateY(55%);filter:blur(3px);white-space:nowrap;font:500 14px/1 'IBM Plex Sans','Inter',system-ui,sans-serif;letter-spacing:.02em;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.sigswap .devurl i{font-style:normal;display:inline-block;margin-left:2px;transition:transform .38s ease}
+a:hover .sigswap .devsig,a:focus-visible .sigswap .devsig,.sigswap:hover .devsig{opacity:0;transform:translateY(-35%) scale(.96);filter:blur(3px)}
+a:hover .sigswap .devurl,a:focus-visible .sigswap .devurl,.sigswap:hover .devurl{opacity:1;transform:none;filter:none}
+a:hover .sigswap .devurl i,.sigswap:hover .devurl i{transform:translate(2px,-2px)}
+@media(prefers-reduced-motion:reduce){.sigswap>*{transition:opacity .2s}}
+.lp-dev-text .sigswap .devsig{font-size:44px;margin:4px 0 2px}
+.lp-dev-text .sigswap .devurl{font-size:16px;color:#fff}
+.lp-stamp .devlink{color:inherit;text-decoration:none}
+.lp-stamp .sigswap .devurl{font-size:12px}
+.lp-dev{padding:16px 20px}
+/* Purgatory ölçüleri */
+.lp-dev-text .sigswap .devsig{font-size:24px;margin:2px 0 0}
+.lp-stamp .devsig{font-size:17px}
+@media(max-width:560px){.lp-dev-text .sigswap .devsig{font-size:22px}}
+.lp-form>h2:first-child,.lp-form>h2{margin-top:auto}
+.lp-mark+h2{margin-top:0!important}

@@ -51,6 +51,7 @@ Route::middleware(['auth', EnsureUserIsActive::class])->group(function () {
 
         Route::post('settings/company', [SettingsController::class, 'company']);
         Route::post('settings/logo', [SettingsController::class, 'logo']);
+        Route::post('settings/theme', [SettingsController::class, 'theme']);
         Route::post('settings/warning', [SettingsController::class, 'warning']);
         Route::post('password', [SettingsController::class, 'password']);
         Route::get('backup', [SettingsController::class, 'backup']);

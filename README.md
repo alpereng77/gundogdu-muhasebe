@@ -1,6 +1,6 @@
-# Gündoğdu İnşaat Muhasebe Takip Paneli
+# Öztoprak İnşaat Muhasebe Sistemi
 
-Author / Geliştiren: **Gündoğdu**
+Geliştirici: **Alperen Gündoğdu Yazılım** · [alperengundogdu.com.tr](https://alperengundogdu.com.tr)
 
 Onaylanan tasarımın, her ekranı ayrı dosyadan açılan HTML + Tailwind CSS + sade JavaScript sürümü. React, Next.js veya başka bir arayüz framework'ü gerektirmez.
 
@@ -40,7 +40,7 @@ Her HTML dosyası kendi başlığını, menüsünü ve gerçek sayfa içeriğini
 - `src/tailwind.css`: Tailwind kaynak dosyası, renk ve font tanımları.
 - `assets/components.css`: onaylanan tasarımın kart, tablo, modal, grafik, responsive ve tema bileşenleri.
 - `assets/app.js`: ortak veri modeli, sayfa şablonları, hesaplamalar, formlar ve etkileşimler. Sade JavaScript'tir.
-- `assets/favicon.svg`: Gündoğdu renkleriyle favicon.
+- `assets/favicon.svg`: panel renkleriyle favicon.
 - `build-pages.cjs`: ortak şablonlardan 11 HTML dosyasını yeniden üretir.
 - `build-css.mjs`: Tailwind kaynaklarını derler.
 - `package.json`: sadece yeniden derleme için geliştirme bağımlılıkları.

@@ -60,7 +60,7 @@ class DemoDataSeeder extends Seeder
         }
         // ODM-002, satıcıya verilen CK-001 çekiyle yapılmıştır.
         Payment::where('number', 'ODM-002')->update(['cheque_id' => Cheque::where('number', 'CK-001')->value('id')]);
-        Setting::put('company', 'Gündoğdu İnşaat A.Ş.');
+        Setting::put('company', 'Öztoprak İnşaat');
         Setting::put('warning', '7');
     }
 }

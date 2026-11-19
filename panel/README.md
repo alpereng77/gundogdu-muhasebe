@@ -1,4 +1,6 @@
-# Gündoğdu İnşaat Muhasebe Takip Paneli — Laravel + MySQL
+# Öztoprak İnşaat Muhasebe Sistemi — Laravel + MySQL
+
+Geliştirici: **Alperen Gündoğdu Yazılım** · [alperengundogdu.com.tr](https://alperengundogdu.com.tr)
 
 Onaylanan HTML/Tailwind arayüzünün sunucuya bağlı sürümü. Ek paket kullanılmaz: yalnızca Laravel 12'nin kendi bileşenleri (oturum, CSRF, Eloquent, Storage, RateLimiter) ve MySQL.
 

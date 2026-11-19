@@ -16,7 +16,7 @@ class Setting extends Model
     /** Logo içeriği işlem geçmişine yazılmaz. */
     protected function auditHiddenFor(): array
     {
-        return $this->key === 'logo' ? ['value'] : [];
+        return in_array($this->key, ['logo', 'theme'], true) ? ['value'] : [];
     }
 
     protected $primaryKey = 'key';

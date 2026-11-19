@@ -34,6 +34,65 @@ class SettingsController extends Controller
         return $this->ok($request, 'Firma bilgileri kaydedildi.');
     }
 
+    /**
+     * Tema: sistem logosu, renkler, yazı tipi, yazı boyutu. Okunabilirliği bozacak renkler kabul edilmez.
+     * reset=1 tüm tema ayarlarını varsayılana döndürür.
+     */
+    public function theme(Request $request)
+    {
+        $this->requireEdit($request, 'ayarlar');
+        if ($request->boolean('reset')) {
+            Setting::where('key', 'theme')->delete();
+            return $this->ok($request, 'Tema varsayılan görünüme döndürüldü.', ['theme' => \App\Support\Theme::forClient()]);
+        }
+        $t = \App\Support\Theme::get();
+        foreach (['menu' => 'Menü rengi', 'accent' => 'Vurgu rengi', 'bg' => 'Arka plan rengi'] as $key => $label) {
+            $v = strtolower(self::str($request->input($key, $t[$key])));
+            if (! preg_match('/^#[0-9a-f]{6}$/', $v)) {
+                $this->fail($label.' geçersiz.');
+            }
+            $t[$key] = $v;
+        }
+        // Beyaz yazının okunabilmesi için menü ve vurgu rengi yeterince koyu olmalı; arka plan açık olmalı.
+        if (\App\Support\Theme::contrastWithWhite($t['menu']) < 4.5) {
+            $this->fail('Menü rengi çok açık; menüdeki beyaz yazılar okunmaz. Daha koyu bir renk seçin.');
+        }
+        if (\App\Support\Theme::contrastWithWhite($t['accent']) < 4.5) {
+            $this->fail('Vurgu rengi çok açık; düğmelerdeki beyaz yazılar okunmaz. Daha koyu bir renk seçin.');
+        }
+        if (\App\Support\Theme::contrastWithWhite($t['bg']) > 1.35) {
+            $this->fail('Arka plan rengi çok koyu; sayfadaki yazılar okunmaz. Açık bir renk seçin.');
+        }
+        $font = self::str($request->input('font', $t['font']));
+        if (! array_key_exists($font, \App\Support\Theme::FONTS)) {
+            $this->fail('Geçersiz yazı tipi.');
+        }
+        $t['font'] = $font;
+        $scale = (float) $request->input('scale', $t['scale']);
+        if (! in_array($scale, \App\Support\Theme::SCALES)) {
+            $this->fail('Geçersiz yazı boyutu.');
+        }
+        $t['scale'] = $scale;
+        $layout = self::str($request->input('layout', $t['layout']));
+        if (! in_array($layout, \App\Support\Theme::LAYOUTS, true)) {
+            $this->fail('Geçersiz menü yerleşimi.');
+        }
+        $t['layout'] = $layout;
+        if ($request->boolean('removeLogo')) {
+            $t['logo'] = '';
+        }
+        $file = $request->file('logo');
+        if ($file) {
+            if (! $file->isValid() || ! in_array($file->getMimeType(), ['image/png', 'image/jpeg', 'image/webp'], true) || $file->getSize() > 300000) {
+                $this->fail('Sistem logosu 300 KB altında PNG, JPG veya WEBP olmalıdır.');
+            }
+            $t['logo'] = 'data:'.$file->getMimeType().';base64,'.base64_encode($file->get());
+        }
+        Setting::put('theme', json_encode($t, JSON_UNESCAPED_SLASHES));
+
+        return $this->ok($request, 'Tema ayarları kaydedildi.', ['theme' => \App\Support\Theme::forClient()]);
+    }
+
     public function logo(Request $request)
     {
         $this->requireEdit($request, 'ayarlar');
@@ -137,7 +196,7 @@ class SettingsController extends Controller
                 'amount' => $t->amount, 'cat' => $t->category ?? '', 'desc' => $t->description ?? '', 'doc' => $t->document_no ?? '',
                 'transfer' => $t->transfer_id,
             ])->values(),
-            'company' => $s['company'] ?? 'Gündoğdu İnşaat A.Ş.',
+            'company' => $s['company'] ?? 'Öztoprak İnşaat',
             'tax' => $s['tax'] ?? '',
             'address' => $s['address'] ?? '',
             'logo' => $s['logo'] ?? '',
@@ -147,7 +206,7 @@ class SettingsController extends Controller
 
         return response()->streamDownload(
             fn () => print(json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)),
-            'gundogdu-muhasebe-yedek.json',
+            'oztoprak-muhasebe-yedek.json',
             ['Content-Type' => 'application/json; charset=utf-8']
         );
     }

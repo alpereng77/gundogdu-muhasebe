@@ -36,6 +36,7 @@ class PageController extends Controller
                 'pages' => $pages,
                 'pageKey' => $key,
                 'notice' => session('notice'),
+                'theme' => \App\Support\Theme::forClient(),
                 'meta' => [
                     'payMethods' => Access::PAY_METHODS,
                     'chequeStatuses' => Access::CHEQUE_STATUSES,
