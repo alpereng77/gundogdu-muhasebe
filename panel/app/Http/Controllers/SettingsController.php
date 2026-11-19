@@ -409,7 +409,7 @@ class SettingsController extends Controller
                 $pairs[$pair] = true;
             }
             if (! is_array($i) || ! $str($i['id'] ?? null) || isset($nets[$i['id']]) || ! $proj($i['project'] ?? null)
-                || (! isset($partyIds[$i['party'] ?? '']) && ! (($i['party'] ?? '') === '' && ($i['kind'] ?? '') === 'faturasiz'))
+                || (! isset($partyIds[$i['party'] ?? '']) && ($i['party'] ?? '') !== '')
                 || ! $num($i['base'] ?? null) || ! $num($i['stopaj'] ?? 0) || ! $num($i['vat'] ?? null)
                 || ! $num($i['rate'] ?? null) || $i['rate'] > 1 || ! self::validDate($i['date'] ?? null) || ! self::validDate($i['due'] ?? null)) {
                 return false;

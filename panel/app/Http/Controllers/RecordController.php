@@ -148,10 +148,8 @@ class RecordController extends Controller
         if ($due < $date) {
             $this->fail('Vade tarihi, işlem tarihinden önce olamaz.');
         }
-        if ($faturali && $partyInput === '') {
-            $this->fail('Faturalı işlemde cari hesap seçiniz.');
-        }
-        if (! $faturali && $partyInput === '' && ! $counterparty) {
+        // Cari zorunlu değildir; cari seçilmezse karşı tarafın adı yazılır.
+        if ($partyInput === '' && ! $counterparty) {
             $this->fail('Cari seçiniz veya karşı tarafın adını yazınız.');
         }
         if (mb_strlen($number) > 100) {
