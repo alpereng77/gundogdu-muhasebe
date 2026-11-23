@@ -351,3 +351,42 @@ footer .sigswap .devurl{font-size:13px}
 .readonly-note .sigswap .devurl{font-size:15px}
 footer .devsig{font-size:17px}
 .readonly-note .devsig{font-size:22px}
+/* Ödeme formu adımları */
+.paystep{display:flex;align-items:center;gap:10px;margin:18px 0 10px;font-size:14px}
+.paystep:first-child{margin-top:0}
+.paystep span{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#e8eee6;color:#314029;font-weight:700;font-size:12px}
+.paynopartner{display:flex;align-items:center;gap:6px;padding:10px 12px;border:1px dashed var(--line);border-radius:8px;margin:4px 0 14px}
+/* Ortak ödeme hareketleri */
+.pmcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-bottom:20px}
+.pmcard{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;text-align:left;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--card,#fff);align-items:start}
+.pmcard b{grid-column:1/-1;font-size:16px}
+.pmcard>small{grid-column:1/-1;color:var(--muted);font-size:12px;margin-top:-4px}
+.pmcard span{display:flex;flex-direction:column;font-size:14px;font-weight:600}
+.pmcard span:last-child{grid-column:1/-1;font-weight:500;color:var(--muted);font-size:13px}
+.pmcard em{font-style:normal;font-size:11.5px;font-weight:500;color:var(--muted)}
+.pmcard.selected{border-color:#50654a;box-shadow:0 0 0 2px #50654a40}
+.pmfilters{display:flex;flex-wrap:wrap;align-items:end;gap:10px}
+.pmfilters .field{margin:0;min-width:170px}
+.pmsearch{flex:1;min-width:220px}
+tr.voidrow td{opacity:.55}
+.settabs .flexfill{flex:1}
+.settabs>button[data-action=partners-xlsx]{border:1px solid var(--line);border-radius:8px;margin:4px 0 6px;padding:8px 12px;font-size:13.5px;color:inherit}
+/* İnşaat gider ve fatura analizi */
+.costbar{display:flex;flex-wrap:wrap;gap:10px;padding:16px 22px 4px}
+.costproject{margin:20px 22px 0;box-shadow:none}
+.costcards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:0 22px 16px}
+.costcards>div{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--bg,#f4f5f1)}
+.costcards small{display:block;font-size:12px;color:var(--muted)}
+.costcards b{display:block;font-size:19px;margin:4px 0 2px}
+.costcards em{font-style:normal;font-size:12px;color:var(--muted)}
+.costtable tr.opened td{background:#f1f4ee}
+.costdetail>td{padding:0 12px 14px!important;background:#fafbf8}
+.subtable{width:100%;font-size:13px;border:1px solid var(--line);border-radius:8px}
+.subtable th{background:#eef2eb!important;font-size:12px}
+.subtable td,.subtable th{padding:8px 12px!important}
+.sharecell{min-width:120px}
+.sharebar{display:block;height:7px;border-radius:4px;background:#e6ebe3;overflow:hidden;margin-bottom:3px}
+.sharebar i{display:block;height:100%;background:linear-gradient(90deg,#50654a,#8aa17f)}
+.costmatrix td.muted{color:#b5bdb5}
+@media(max-width:900px){.costcards{grid-template-columns:1fr 1fr}}
+.costwarn{margin:12px 22px 0}
